@@ -1,22 +1,13 @@
+import { useState } from 'react';
 import Header from './Components/Header'
 
+let ts = String(new Date().valueOf())
+const PUBLIC_KEY = '0a13d695b4d59a3324ab3e0c62ef0a7e'
+const MARVEL_API_KEY = 'f5f7d080a1e9ca32a2b3addb12df0c1736be6d0e'
+
 function App() {
-  const [characterName, setCharacterName] = useState('');
   const [favoriteCharacters, setFavoriteCharacters] = useState([]);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
-
-  // Fetch character data from Marvel API based on character name
-  const fetchCharacterData = async () => {
-    const response = await fetch(`https://gateway.marvel.com/v1/public/characters?name=${characterName}&apikey={YOUR_API_KEY}`)
-    // Perform API request using characterName
-    // Set the fetched character data to setSelectedCharacter
-    // Example API call: https://gateway.marvel.com/v1/public/characters?name={characterName}&apikey={YOUR_API_KEY}
-  };
-
-  // Handle character search
-  const handleCharacterSearch = () => {
-    fetchCharacterData();
-  };
 
   // Handle adding a character to favorites
   const handleAddToFavorites = (character) => {
@@ -26,7 +17,6 @@ function App() {
   return (
     <>
       <Header
-        onSearch={handleCharacterSearch}
         onFavoritesClick={() => {/* Handle navigation to favorites page */}}
       />
     </>
