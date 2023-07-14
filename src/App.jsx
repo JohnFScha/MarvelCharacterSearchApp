@@ -1,32 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Header from './Components/Header'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [characterName, setCharacterName] = useState('');
+  const [favoriteCharacters, setFavoriteCharacters] = useState([]);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  // Fetch character data from Marvel API based on character name
+  const fetchCharacterData = async () => {
+    const response = await fetch(`https://gateway.marvel.com/v1/public/characters?name=${characterName}&apikey={YOUR_API_KEY}`)
+    // Perform API request using characterName
+    // Set the fetched character data to setSelectedCharacter
+    // Example API call: https://gateway.marvel.com/v1/public/characters?name={characterName}&apikey={YOUR_API_KEY}
+  };
+
+  // Handle character search
+  const handleCharacterSearch = () => {
+    fetchCharacterData();
+  };
+
+  // Handle adding a character to favorites
+  const handleAddToFavorites = (character) => {
+    setFavoriteCharacters([...favoriteCharacters, character]);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} className='p-5 bg-fuchsia-300'>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header
+        onSearch={handleCharacterSearch}
+        onFavoritesClick={() => {/* Handle navigation to favorites page */}}
+      />
     </>
   )
 }
