@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CharacterList = ({ characters }) => {
+const CharacterList = ({ characters, onCharacterClick }) => {
   return (
     <ul>
       {characters.map((character) => (
