@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Header from './Components/Header'
-import { useEffect } from 'react';
 
 const PUBLIC_KEY = '0a13d695b4d59a3324ab3e0c62ef0a7e'
 
@@ -16,7 +15,7 @@ function App() {
     );
     const data = await response.json();
     // Assuming that the API returns an array of characters, you can update characterData with the response
-    setCharacterData(data?.data?.results);
+    setCharacterData(data?.results);
     console.log(characterData)
   };
 
