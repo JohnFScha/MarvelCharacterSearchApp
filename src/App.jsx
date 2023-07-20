@@ -1,32 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
+import Header from './Components/Header'
+import { useEffect } from 'react';
+
+const PUBLIC_KEY = '0a13d695b4d59a3324ab3e0c62ef0a7e'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchValue, setSearchValue] = useState('');
+  const [characterData, setCharacterData] = useState([]);
+  const [favoriteCharacters, setFavoriteCharacters] = useState([]);
+
+  // Fetch character data from Marvel API based on character name
+  const fetchCharacterData = async (characterName) => {
+    const response = await fetch(
+      `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&apikey=${PUBLIC_KEY}`
+    );
+    const data = await response.json();
+    // Assuming that the API returns an array of characters, you can update characterData with the response
+    setCharacterData(data?.data?.results);
+    console.log(characterData)
+  };
+
+  // Handle character search
+  const handleCharacterSearch = () => {
+    fetchCharacterData(searchValue);
+  };
+
+  // Handle adding a character to favorites
+  const handleAddToFavorites = (character) => {
+    setFavoriteCharacters([...favoriteCharacters, character]);
+  };
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} className='p-5 bg-fuchsia-300'>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header
+        searchValue={searchValue}
+        onSearch={handleCharacterSearch}
+        onSearchInputChange={(e) => setSearchValue(e.target.value)}
+        onFavoritesClick={() => {/* Handle navigation to favorites page */}}
+      />
     </>
   )
 }
