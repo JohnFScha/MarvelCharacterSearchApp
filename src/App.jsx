@@ -1,44 +1,60 @@
-import { useState } from 'react';
+import React from 'react';
 import Header from './Components/Header'
-
-const PUBLIC_KEY = '0a13d695b4d59a3324ab3e0c62ef0a7e'
+import CharacterModal from './Components/CharacterModal';
+import CharacterCard from './Components/CharacterCard';
+import useMarvelSearch from './Hooks/useMarvelSearch';
 
 function App() {
-  const [searchValue, setSearchValue] = useState('');
-  const [characterData, setCharacterData] = useState([]);
-  const [favoriteCharacters, setFavoriteCharacters] = useState([]);
+  const {
+    searchType,
+    setSearchType,
+    inputValue,
+    searchResult,
+    handleInputChange,
+    handleSearch,
+  } = useMarvelSearch();
 
-  // Fetch character data from Marvel API based on character name
-  const fetchCharacterData = async (characterName) => {
-    const response = await fetch(
-      `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&apikey=${PUBLIC_KEY}`
-    );
-    const data = await response.json();
-    // Assuming that the API returns an array of characters, you can update characterData with the response
-    setCharacterData(data?.results);
-    console.log(characterData)
+  const [modalData, setModalData] = React.useState(null);
+  const [favourites, setFavourites] = React.useState(null);
+
+  const handleAddToFavourites = (characterData) => {
+    setFavourites(characterData)
+  }
+
+  const handleOpenModal = (characterData) => {
+    setModalData(characterData);
   };
 
-  // Handle character search
-  const handleCharacterSearch = () => {
-    fetchCharacterData(searchValue);
+  const handleCloseModal = () => {
+    setModalData(null);
   };
-
-  // Handle adding a character to favorites
-  const handleAddToFavorites = (character) => {
-    setFavoriteCharacters([...favoriteCharacters, character]);
-  };
-
 
   return (
-    <>
-      <Header
-        searchValue={searchValue}
-        onSearch={handleCharacterSearch}
-        onSearchInputChange={(e) => setSearchValue(e.target.value)}
-        onFavoritesClick={() => {/* Handle navigation to favorites page */}}
-      />
-    </>
+      <div className="App">
+        <Header
+          value={inputValue}
+          inputChange={handleInputChange}
+          handleSearch={handleSearch}
+          onFavoritesClick={handleAddToFavourites}
+          searchType={searchType}
+          setSearchType={setSearchType}
+        />
+        <div className="characters-container">
+          {searchResult ?
+            searchResult.map((characterData) => (
+              <CharacterCard
+                key={characterData.id}
+                characterData={characterData}
+                handleOpenModal={handleOpenModal}
+              />
+            ))
+            :
+            <h1>No data yet</h1>
+          }
+        </div>
+        {modalData && <Modal characterData={modalData} handleCloseModal={handleCloseModal} />}
+        {/* <Favourites /> */}
+      </div>
   )
 }
 
