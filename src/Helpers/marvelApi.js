@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'https://gateway.marvel.com/v1/public';
-const API_KEY = '0a13d695b4d59a3324ab3e0c62ef0a7e';
+const API_BASE_URL = "https://gateway.marvel.com/v1/public";
+const API_KEY = "0a13d695b4d59a3324ab3e0c62ef0a7e";
 
 export const getComicByUrl = async (url) => {
   try {
@@ -13,7 +13,7 @@ export const getComicByUrl = async (url) => {
     });
     return response.data.data.results;
   } catch (error) {
-    console.error('Error fetching comic by URL:', error);
+    console.error("Error fetching comic by URL:", error);
     return null;
   }
 };
@@ -28,7 +28,7 @@ export const searchComicByName = async (comicName) => {
     });
     return response.data.data.results;
   } catch (error) {
-    console.error('Error searching comic by name:', error);
+    console.error("Error searching comic by name:", error);
     return null;
   }
 };
@@ -43,12 +43,27 @@ export const searchCharacterByName = async (characterName) => {
     });
     return response.data.data.results;
   } catch (error) {
-    console.error('Error searching character by name:', error);
+    console.error("Error searching character by name:", error);
+    return null;
+  }
+};
+
+export const fetchRandomCharacter = async (randomName) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/characters`, {
+      params: {
+        nameStartsWith: randomName,
+        apikey: API_KEY,
+      },
+    });
+    return response.data.data.results;
+  } catch {
+    console.error("Error searching character by name:", error);
     return null;
   }
 };
 
 const extractComicIdFromUrl = (url) => {
-  const parts = url.split('/');
+  const parts = url.split("/");
   return parts[parts.length - 2];
 };
