@@ -5,7 +5,7 @@ import { StarIcon as StarFill } from '@heroicons/react/24/solid';
 
 
 const CharacterCard = ({ characterData, handleOpenModal }) => {
-  const { name, thumbnail } = characterData;
+  const { title, name, thumbnail } = characterData;
   const { favorites, addToFavorites } = useMarvelContext()
 
   const isImageNotAvailable = thumbnail && thumbnail.path.includes("image_not_available");
@@ -32,7 +32,7 @@ const CharacterCard = ({ characterData, handleOpenModal }) => {
         onClick={() => handleOpenModal(characterData)}
         className="z-10"
       />
-      <h3>{name}</h3>
+      <h3>{name || title}</h3>
     </div>
   );
 };

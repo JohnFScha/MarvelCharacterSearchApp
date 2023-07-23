@@ -1,5 +1,10 @@
-import { useState, useCallback, useEffect } from "react";
-import { getComicByUrl, searchComicByName, searchCharacterByName, fetchRandomCharacter } from "../Helpers/marvelApi";
+import { useState, useCallback } from "react";
+import {
+  getComicByUrl,
+  searchComicByName,
+  searchCharacterByName,
+  fetchRandomCharacter,
+} from "../Helpers/marvelApi";
 import { useMarvelContext } from "../context/MarvelContext";
 
 const useMarvelSearch = () => {
@@ -9,25 +14,32 @@ const useMarvelSearch = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-  const handleInputChange = useCallback((event) => {
-      setInputValue(event.target.value );
-    }, [inputValue]
-    );
+  const handleInputChange = useCallback(
+    (event) => {
+      setInputValue(event.target.value);
+    },
+    [inputValue]
+  );
+  console.log(inputValue)
 
   const handleSearch = useCallback(
-    (e) => {
+    async(e) => {
       e.preventDefault();
       let result = null;
-      if (searchType === "comic") {
-        searchComic();
+        if (characterData === null) {
+        await onload();
+        result = characterData;
+        }
+        else if (searchType === "comic") {
+        await searchComic();
         result = comicData;
       } else if (searchType === "character") {
-        searchCharacter();
+        await searchCharacter();
         result = characterData;
       }
       setSearchResult(result);
     },
-    [characterData, comicData, inputValue]
+    [searchResult]
   );
 
   const searchComic = useCallback(async () => {
@@ -38,14 +50,14 @@ const useMarvelSearch = () => {
       result = await searchComicByName(inputValue);
     }
     setComicData(result);
-  }, [inputValue, setComicData]);
+  }, [comicData]);
 
   const searchCharacter = useCallback(async () => {
     const result = await searchCharacterByName(inputValue);
     setCharacterData(result);
-  }, [inputValue, setCharacterData]);
+  }, [characterData]);
 
-  useEffect(() => {
+  async function onload() {
     const names = [
       "Spider-Man",
       "Iron Man",
@@ -77,16 +89,40 @@ const useMarvelSearch = () => {
       "Gambit",
       "Nightcrawler",
       "Star-Lord",
+      "Hank Pym",
+      "Wanda Maximoff",
+      "Rocket Raccoon",
+      "Gamora",
+      "Drax the Destroyer",
+      "Mantis",
+      "Winter Soldier",
+      "War Machine",
+      "Nick Fury",
+      "Maria Hill",
+      "She-Hulk",
+      "Nova",
+      "Moon Knight",
+      "Blade",
+      "Shang-Chi",
+      "Namor the Sub-Mariner",
+      "Taskmaster",
+      "Miles Morales",
+      "Agent Venom",
+      "Kate Bishop",
+      "Moon Girl",
+      "Squirrel Girl",
+      "America Chavez",
+      "Silk",
+      "Kamala Khan",
+      "Ghost Rider",
+      "Jessica Drew",
+      "Hercules",
     ];
-
     const randomIndex = Math.floor(Math.random() * names.length);
-    async function onload () {
-      const randomCharacter = await fetchRandomCharacter(names[randomIndex]);
-      setCharacterData(randomCharacter)
-      setSearchResult(characterData)
-    }
-    onload()
-  }, []);
+    const randomCharacter = await fetchRandomCharacter(names[randomIndex]);
+    setCharacterData(randomCharacter);
+    setSearchResult(characterData);
+  }
 
   return {
     searchType,
@@ -96,6 +132,7 @@ const useMarvelSearch = () => {
     searchResult,
     handleInputChange,
     handleSearch,
+    onload,
   };
 };
 

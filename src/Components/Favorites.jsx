@@ -8,7 +8,7 @@ const Favorites = () => {
   const handleRemoveFromFavorites = (characterId) => {
     removeFromFavorites(characterId)
   }
-
+  
   return (
     <div className="grid grid-cols-4 place-items-center m-5 gap-y-5">
       { favorites.length !== 0 ? (

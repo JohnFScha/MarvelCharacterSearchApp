@@ -5,9 +5,7 @@ import "./index.css";
 import { MarvelProvider } from "./context/MarvelContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <MarvelProvider>
-      <App />
-    </MarvelProvider>
-  </React.StrictMode>
+  <MarvelProvider>
+    <App />
+  </MarvelProvider>
 );

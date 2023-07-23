@@ -1,9 +1,10 @@
-import React from 'react';
-import Header from './Components/Header'
-import CharacterModal from './Components/CharacterModal';
-import CharacterCard from './Components/CharacterCard';
-import Favorites from './Components/Favorites';
-import useMarvelSearch from './Hooks/useMarvelSearch';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./Components/Header";
+import CharacterList from "./Components/CharacterList";
+import CharacterModal from "./Components/CharacterModal";
+import Favorites from "./Components/Favorites";
+import useMarvelSearch from "./Hooks/useMarvelSearch";
 
 function App() {
   const {
@@ -13,6 +14,7 @@ function App() {
     searchResult,
     handleInputChange,
     handleSearch,
+    onload
   } = useMarvelSearch();
 
   const [modalData, setModalData] = React.useState(null);
@@ -20,38 +22,34 @@ function App() {
   const handleOpenModal = (characterData) => {
     setModalData(characterData);
   };
- 
+
   const handleCloseModal = () => {
     setModalData(null);
   };
-  
+
   return (
+    <Router>
       <div className="App">
         <Header
           value={inputValue}
           inputChange={handleInputChange}
           handleSearch={handleSearch}
-          // onFavoritesClick={handleAddToFavourites}
           searchType={searchType}
           setSearchType={setSearchType}
         />
-        <div className="grid grid-cols-4 place-items-center m-5 gap-y-5">
-          {searchResult ?
-            searchResult.map((characterData) => (
-              <CharacterCard
-                key={characterData.id}
-                characterData={characterData}
-                handleOpenModal={handleOpenModal}
-              />
-            ))
-            :
-            <h1>No data yet</h1>
-          }
-        </div>
-        {modalData && <CharacterModal characterData={modalData} handleCloseModal={handleCloseModal} />}
-        <Favorites />
+        <Routes>
+          <Route exact path="/" element={<CharacterList characters={searchResult} handleOpenModal={handleOpenModal} />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+        {modalData && (
+          <CharacterModal
+            characterData={modalData}
+            handleCloseModal={handleCloseModal}
+          />
+        )}
       </div>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
