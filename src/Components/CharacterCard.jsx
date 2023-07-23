@@ -15,7 +15,6 @@ const CharacterCard = ({ characterData, handleOpenModal }) => {
   }
 
   const handleAddToFavorites = () => {
-    // Call the addToFavorites function from the context to add the character to favorites
     addToFavorites(characterData);
   };
 

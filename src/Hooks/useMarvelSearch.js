@@ -9,12 +9,10 @@ const useMarvelSearch = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-  const handleInputChange = useCallback(
-    (event) => {
+  const handleInputChange = useCallback((event) => {
       setInputValue(event.target.value );
     }, [inputValue]
     );
-    console.log(inputValue)
 
   const handleSearch = useCallback(
     (e) => {
@@ -86,7 +84,6 @@ const useMarvelSearch = () => {
       const randomCharacter = await fetchRandomCharacter(names[randomIndex]);
       setCharacterData(randomCharacter)
       setSearchResult(characterData)
-      console.log(searchResult)
     }
     onload()
   }, []);
