@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StarIcon } from '@heroicons/react/24/solid';
+import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
+import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
+import { useMarvelContext } from '../context/MarvelContext';
 
 function Header({ value, inputChange, handleSearch, searchType, setSearchType }) {
+  const { favorites } = useMarvelContext()
 
   return (
     <header className='flex justify-evenly border-b-2 p-2'>
@@ -19,7 +22,12 @@ function Header({ value, inputChange, handleSearch, searchType, setSearchType })
       </form>
 
       <Link to="/favorites" className='flex items-center'>
-        <StarIcon className='w-7 m-auto opacity-50'/>
+        {
+          favorites.length === 0 ?
+          <StarOutline className='w-7 m-auto opacity-50'/>
+          : 
+          <StarSolid className='w-7 m-auto opacity-50'/>
+        }
       </Link>
     </header>
   );

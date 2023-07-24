@@ -4,8 +4,8 @@ import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarFill } from '@heroicons/react/24/solid';
 
 
-const DataCard = ({ id, title, thumbnail, handleOpenModal }) => {
-  const { favorites, addToFavorites } = useMarvelContext()
+const DataCard = ({ id, title, thumbnail, handleAddToFavorites, handleOpenModal }) => {
+  const { favorites } = useMarvelContext()
 
   const isImageNotAvailable = thumbnail && thumbnail.path.includes("image_not_available");
 
@@ -13,16 +13,11 @@ const DataCard = ({ id, title, thumbnail, handleOpenModal }) => {
     return null;
   }
 
-  const handleAddToFavorites = () => {
-    addToFavorites(id);
-  };
-
   return (
     <div className="character-card">
-      <button className="w-7 m-auto opacity-50" onClick={handleAddToFavorites}>  
+      <button className="w-7 m-auto opacity-50" onClick={() => handleAddToFavorites(id)}>  
         {
-        favorites.includes(id) ?
-         <StarFill /> : <StarOutline />
+        favorites.some((char) => char.id === id) ? <StarFill /> : <StarOutline />
         }
       </button>
       <img

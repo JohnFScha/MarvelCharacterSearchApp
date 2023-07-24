@@ -16,7 +16,7 @@ const Favorites = () => {
   }
    
   return (
-    <div className="grid grid-cols-4 place-items-center m-5 gap-y-5">
+    <main className="grid grid-cols-4 place-items-center m-5 gap-y-5">
       { 
       favorites.map((favorite) => (
         <div className="card" key={favorite.id}>
@@ -31,7 +31,7 @@ const Favorites = () => {
         </div>
         ))
       }
-    </div>
+    </main>
   );
 };
 

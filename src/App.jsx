@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import DataList from "./Components/DataList";
 import CharacterModal from "./Components/CharacterModal";
 import Favorites from "./Components/Favorites";
+import Footer from "./Components/Footer";
 import useMarvelSearch from "./Hooks/useMarvelSearch";
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App min-h-screen">
         <Header
           value={inputValue}
           inputChange={handleInputChange}
@@ -51,6 +52,7 @@ function App() {
             handleCloseModal={handleCloseModal}
           />
         )}
+        <Footer />
       </div>
     </Router>
   );
