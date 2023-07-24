@@ -4,20 +4,17 @@ import { useCallback } from "react";
 const MarvelContext = createContext();
 
 const MarvelProvider = ({ children }) => {
-  const [comicData, setComicData] = useState(null);
-  const [characterData, setCharacterData] = useState(null);
   const [favorites, setFavorites] = useState(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    return storedFavorites ? [JSON.parse(storedFavorites)] : localStorage.setItem("favorites", []);
+    localStorage.getItem("favorites") ? localStorage.getItem("favorites") : localStorage.setItem("fovrites", "[]")
+    debugger;
   });
-
   const addToFavorites = useCallback(
-    (characterData) => {
-      if (favorites.some((char) => char.id === characterData.id)) {
-        alert(`${characterData.name} already Faved.`);
+    (data) => {
+      if (favorites.some((char) => char.id === data.id)) {
+        alert(`${data.name} already Faved.`);
       } else {
-        setFavorites((prevFav) =>[...prevFav, characterData]);
-        localStorage.setItem("favorites", JSON.stringify(characterData))
+        setFavorites((prevFav) =>[...prevFav, data]);
+        localStorage.setItem("favorites", JSON.stringify([...prevFav, data]))
       }
     },
     [favorites]
@@ -37,10 +34,6 @@ const MarvelProvider = ({ children }) => {
   return (
     <MarvelContext.Provider
       value={{
-        comicData,
-        setComicData,
-        characterData,
-        setCharacterData,
         favorites,
         addToFavorites,
         removeFromFavorites,

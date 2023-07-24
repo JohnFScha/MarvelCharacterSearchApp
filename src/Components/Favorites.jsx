@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StarIcon as StarFill } from "@heroicons/react/24/solid";
 import { useMarvelContext } from "../context/MarvelContext";
 
@@ -8,10 +8,16 @@ const Favorites = () => {
   const handleRemoveFromFavorites = (characterId) => {
     removeFromFavorites(characterId)
   }
-  
+
+  if (favorites.length === 0) {
+    return (
+      <h1>nothing here...</h1>
+    )
+  }
+   
   return (
     <div className="grid grid-cols-4 place-items-center m-5 gap-y-5">
-      { favorites.length !== 0 ? (
+      { 
       favorites.map((favorite) => (
         <div className="card" key={favorite.id}>
           <button className="w-7 m-auto opacity-50" onClick={() => handleRemoveFromFavorites(favorite.id)}>  
@@ -24,10 +30,7 @@ const Favorites = () => {
           <span>{favorite.name}</span>
         </div>
         ))
-      ) : (
-        <h1>nothing here...</h1>
-      )
-    }
+      }
     </div>
   );
 };

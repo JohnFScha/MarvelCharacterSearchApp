@@ -3,10 +3,9 @@ import axios from "axios";
 const API_BASE_URL = "https://gateway.marvel.com/v1/public";
 const API_KEY = "39005019ecc96a8b2ec9878fe87f6ae0";
 
-export const getComicByUrl = async (url) => {
+export const getCharactersAPI = async () => {
   try {
-    const comicId = extractComicIdFromUrl(url);
-    const response = await axios.get(`${API_BASE_URL}/comics/${comicId}`, {
+    const response = await axios.get(`${API_BASE_URL}/characters`, {
       params: {
         apikey: API_KEY,
       },
@@ -18,26 +17,24 @@ export const getComicByUrl = async (url) => {
   }
 };
 
-export const searchComicByName = async (comicName) => {
+export const searchByIdAPI = async (id, type) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/comics`, {
+    const response = await axios.get(`${API_BASE_URL}/${type}s/${id}`, {
       params: {
-        titleStartsWith: comicName,
         apikey: API_KEY,
       },
     });
     return response.data.data.results;
   } catch (error) {
-    console.error("Error searching comic by name:", error);
+    console.error("Error searching character by id:", error);
     return null;
   }
-};
-
-export const searchCharacterByName = async (characterName) => {
+}
+export const searchByNameAPI = async (name, type) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/characters`, {
+    const response = await axios.get(`${API_BASE_URL}/${type}s`, {
       params: {
-        nameStartsWith: characterName,
+        [type === "comic" ? "titleStartsWith" : "nameStartsWith"]: name,
         apikey: API_KEY,
       },
     });
@@ -46,24 +43,4 @@ export const searchCharacterByName = async (characterName) => {
     console.error("Error searching character by name:", error);
     return null;
   }
-};
-
-export const fetchRandomCharacter = async (randomName) => {
-  try {
-    const response = await axios.get(`${API_BASE_URL}/characters`, {
-      params: {
-        nameStartsWith: randomName,
-        apikey: API_KEY,
-      },
-    });
-    return response.data.data.results;
-  } catch {
-    console.error("Error searching character by name:", error);
-    return null;
-  }
-};
-
-const extractComicIdFromUrl = (url) => {
-  const parts = url.split("/");
-  return parts[parts.length - 2];
-};
+}
