@@ -23,7 +23,6 @@ const useMarvelSearch = () => {
     if (type === 'comic' && isURL) {
       const slicedUrl = inputValue.replace("https://", "").split('/');
       const id = slicedUrl[3];
-      debugger;
       result = await searchByIdAPI(id, type);
     } else {
       result = await searchByNameAPI(inputValue, type);  
@@ -44,6 +43,7 @@ const useMarvelSearch = () => {
     inputValue,
     setInputValue,
     results,
+    setResults,
     handleInputChange,
     search,
     setRandomCharacter

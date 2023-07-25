@@ -11,7 +11,7 @@ const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <h1>nothing here...</h1>
+      <h1 className="h-screen">nothing here...</h1>
     )
   }
    

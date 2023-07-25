@@ -3,9 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { MarvelProvider } from "./context/MarvelContext.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <MarvelProvider>
-    <App />
-  </MarvelProvider>
+  <Router>
+    <MarvelProvider>
+      <App />
+    </MarvelProvider>
+  </Router>
 );

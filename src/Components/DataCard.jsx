@@ -3,7 +3,6 @@ import { useMarvelContext } from "../context/MarvelContext";
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarFill } from '@heroicons/react/24/solid';
 
-
 const DataCard = ({ id, title, thumbnail, handleAddToFavorites, handleOpenModal }) => {
   const { favorites } = useMarvelContext()
 
@@ -23,7 +22,7 @@ const DataCard = ({ id, title, thumbnail, handleAddToFavorites, handleOpenModal 
       <img
         src={`${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`}
         alt={title}
-        onClick={() => handleOpenModal(characterData)}
+        onClick={() => handleOpenModal(id)}
         className="z-10"
       />
       <h3>{title}</h3>
