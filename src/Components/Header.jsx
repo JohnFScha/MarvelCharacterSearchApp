@@ -1,35 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
-import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
+import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlineIcon, StarFillIcon, Select } from '../styles/componentStyles';
 
 function Header({ value, inputChange, handleSearch, searchType, setSearchType, favorites }) {
 
   return (
-    <header className='flex justify-evenly border-b-2 p-2 shadow-lg shadow-gray-400 rounded-b-md'>
-      <div className='w-1/12 '>
+    <StyledHeader>
+      <ImageContainer>
         <a href="https://www.marvel.com/" target='_blank'>
           <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />
         </a>
-      </div>
+      </ImageContainer>
 
-      <form className='flex items-center justify-stretch w-10/12' onSubmit={handleSearch} >
-        <input type="text" value={value} onChange={inputChange}placeholder="Search character..." className='border-l-2 w-full p-1 focus:outline-none'/>
-        <select value={searchType} onChange={(e) => setSearchType(e.target.value)} className='h-full'>
+      <Form onSubmit={handleSearch} >
+        <SearchInput type="text" value={value} onChange={inputChange}placeholder="Search character..." />
+        <Select value={searchType} onChange={(e) => setSearchType(e.target.value)} className='h-full'>
           <option value="comic">Comic</option>
           <option value="character">Character</option>
-        </select>
-      </form>
+        </Select>
+      </Form>
 
-      <Link to="/favorites" className='flex items-center'>
+      <StyledLink to="/favorites">
         {
           favorites.length === 0 ?
-          <StarOutline className='w-7 m-auto opacity-50'/>
+          <StarOutlineIcon />
           : 
-          <StarSolid className='w-7 m-auto opacity-50'/>
+          <StarFillIcon />
         }
-      </Link>
-    </header>
+      </StyledLink>
+    </StyledHeader>
   );
 }
 

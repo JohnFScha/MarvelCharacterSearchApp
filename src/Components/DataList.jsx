@@ -2,7 +2,7 @@ import React from "react";
 import DataCard from "./DataCard";
 import ComicModal from "./ComicModal";
 import { searchComicByCharacterIdAPI } from "../Helpers/marvelApi";
-import { XCircleIcon } from "@heroicons/react/24/outline";
+import { MainContainer, ModalOutside, ModalInside, ModalContainer, ModalWarning, StyledXCircleIcon, Title1} from "../styles/componentStyles";
 
 const DataList = ({ data, favorites, addToFavorites }) => {
   const [modalData, setModalData] = React.useState(null);
@@ -40,7 +40,7 @@ const DataList = ({ data, favorites, addToFavorites }) => {
   };
 
   return (
-    <main className="grid grid-cols-4 place-items-center gap-8 min-h-full my-5">
+    <MainContainer>
       {data.map((character) => (
         <DataCard
           key={character.id}
@@ -53,20 +53,19 @@ const DataList = ({ data, favorites, addToFavorites }) => {
         />
       ))}
       {modalData ? (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl overflow-y-scroll h-5/6 w-4/6 shadow-rose-900 scroll-smooth">
-            <div className="flex justify-between items-center">
+        <ModalOutside>
+          <ModalInside>
+            <ModalContainer>
               {modalData.length !== 0 ? (
-                <h1 className="text-3xl text-red-600 ms-3">{modalData[0].characters.items[0].name}:</h1>
+                <Title1>{modalData[0].characters.items[0].name}:</Title1>
               ) : null}
               <button
                 type="button"
                 onClick={handleCloseModal}
-                className="inline-block"
               >
-                <XCircleIcon className="w-8" />
+                <StyledXCircleIcon />
               </button>
-            </div>
+            </ModalContainer>
             {modalData.length !== 0 ? (
               modalData.map((comic) => (
                 <ComicModal
@@ -78,14 +77,14 @@ const DataList = ({ data, favorites, addToFavorites }) => {
                 />
               ))
             ) : (
-              <h1 className="text-4xl text-center my-40">
+              <ModalWarning>
                 No comic data for this character
-              </h1>
+              </ModalWarning>
             )}
-          </div>
-        </div>
+          </ModalInside>
+        </ModalOutside>
       ) : null}
-    </main>
+    </MainContainer>
   );
 };
 

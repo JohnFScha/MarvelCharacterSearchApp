@@ -1,9 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import parseDate from "../utils/parseDate";
 import { useParams } from "react-router-dom";
 import { searchComicByIdAPI } from "../Helpers/marvelApi";
-import { useState } from "react";
-import { useEffect } from "react";
+import { ComicMain, ComicData, ComicDetailCover } from "../styles/componentStyles";
 
 const ComicDetail = () => {
   const [comic, setComic] = useState(null);
@@ -20,11 +19,11 @@ const ComicDetail = () => {
   }, []);
 
   return comic ? (
-    <main className="grid grid-cols-2 justify-items-center p-5 w-5/6 m-auto">
+    <ComicMain>
       <div>
-        <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} className="max-w-sm" />
+        <ComicDetailCover src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
       </div>
-      <div className="flex flex-col gap-y-5 text-justify justify-center text-lg">
+      <ComicData>
         <h1>{comic.title}</h1>
         <p>{parseDate(comic.dates[0].date)}</p>
         <ul>
@@ -33,8 +32,8 @@ const ComicDetail = () => {
           )}
         </ul>
         <p>{comic.description}</p>
-      </div>
-    </main>
+      </ComicData>
+    </ComicMain>
   ) : (
     <h1>No data</h1>
   );

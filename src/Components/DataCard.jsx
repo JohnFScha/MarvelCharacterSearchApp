@@ -15,7 +15,7 @@ const DataCard = ({ id, title, thumbnail, handleAddToFavorites, handleOpenModal,
   }
 
   return (
-    <div className="bg-cover bg-no-repeat bg-center w-11/12 flex flex-col justify-between rounded-lg text-zinc-50" style={containerStyles}> 
+    <div className="bg-cover bg-no-repeat bg-center w-11/12 flex flex-col justify-between rounded-lg text-zinc-50" style={containerStyles} onDoubleClick={handleOpenModal}> 
       <button className="w-10 self-end" onClick={() => handleAddToFavorites(id)}>  
         {
         favorites.some((char) => char.id === id) ? <StarFill /> : <StarOutline />

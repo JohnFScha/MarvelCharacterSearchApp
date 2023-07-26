@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ComicModalContainer, ComicCover, StyledImg, ModalName, ModalDescription } from '../styles/componentStyles'
 
 const ComicModal = ({ id, thumbnail, title, description }) => {
 
@@ -12,19 +13,18 @@ const ComicModal = ({ id, thumbnail, title, description }) => {
   }
 
   return (
-    <div className="m-auto flex justify-normal items-start w-10/12 gap-3 my-10">
-      <div className="flex flex-col">
+    <ComicModalContainer>
+      <ComicCover>
         <Link to={`/comics/${id}`}>
-          <img
+          <StyledImg
             src={`${thumbnail.path}.${thumbnail.extension}`}
             alt="title"
-            className="max-w-xs"
           />  
         </Link>
-        <small className="text-center">{title}</small>
-      </div>
-      <p className="text-justify">{description}</p>
-    </div>
+        <ModalName>{title}</ModalName>
+      </ComicCover>
+      <ModalDescription>{description}</ModalDescription>
+    </ComicModalContainer>
   );
 };
 
