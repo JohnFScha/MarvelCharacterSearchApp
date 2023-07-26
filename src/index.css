@@ -2,6 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset box sizing to border-box (optional) */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remove margin and padding from all elements */
+body, h1, h2, h3, h4, h5, h6, p, blockquote, figcaption, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set default font size and family */
 body {
-  min-height: 100vh;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+/* Remove list styles (optional) */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove default hyperlink styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Optionally reset some form elements (input, button, textarea, etc.) */
+input, button, textarea, select {
+  appearance: none;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Optionally set styles for specific elements (e.g., focus outline) */
+button:focus {
+  outline: none;
 }

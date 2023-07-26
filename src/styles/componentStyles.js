@@ -89,9 +89,10 @@ export const ModalWarning = styled.h1`
 `;
 
 export const EmptyFavs = styled.h1`
-  height: 100vh;
+  height: 43vh;
   text-align: center;
-  margin-top: 10rem;
+  margin-top: 18rem;
+  font-size: x-large;
 `;
 
 /* Header */
