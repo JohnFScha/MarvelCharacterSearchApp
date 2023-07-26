@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const ComicDetail = () => {
   const [comic, setComic] = useState(null);
   const id = useParams();
-  console.log(id);
+  console.log(comic);
 
   const comicData = async () => {
     const result = await searchComicByIdAPI(id.comic);
@@ -24,13 +24,13 @@ const ComicDetail = () => {
       <div>
         <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} className="max-w-sm" />
       </div>
-      <div className="flex flex-col gap-y-5 text-justify text-lg">
+      <div className="flex flex-col gap-y-5 text-justify justify-center text-lg">
         <h1>{comic.title}</h1>
         <p>{parseDate(comic.dates[0].date)}</p>
         <ul>
-          {comic.creators.items.map((creator) => {
-            <li key={creator.resourceURI}>{creator.role}: {creator.name}</li>
-          })}
+          {comic.creators.items.map((creator) => 
+            <li key={creator.resourceURI}>{creator.role.charAt(0).toUpperCase() + creator.role.slice(1)}: {creator.name}</li>
+          )}
         </ul>
         <p>{comic.description}</p>
       </div>

@@ -1,13 +1,12 @@
 import React from "react";
 import { StarIcon as StarFill } from "@heroicons/react/24/solid";
-import { useMarvelContext } from "../context/MarvelContext";
 
-const Favorites = () => {
-  const { favorites, removeFromFavorites } = useMarvelContext();
+const Favorites = ({ favorites, removeFromFavorites }) => {
+  const containerStyles = {height: '500px'}
   
-  const handleRemoveFromFavorites = (characterId) => {
-    removeFromFavorites(characterId)
-    alert(`${characterId.name} removed.`)
+  const handleRemoveFromFavorites = (favorite) => {
+    removeFromFavorites(favorite)
+    alert(`${favorite.name} removed.`)
   }
 
   if (favorites.length === 0) {
@@ -20,15 +19,11 @@ const Favorites = () => {
     <main className="grid grid-cols-4 place-items-center m-5 gap-y-5">
       { 
       favorites.map((favorite) => (
-        <div className="card" key={favorite.id}>
-          <button className="w-7 m-auto opacity-50" onClick={() => handleRemoveFromFavorites(favorite.id)}>  
+        <div className="bg-cover bg-no-repeat bg-center w-11/12 flex flex-col justify-between rounded-lg text-zinc-50" key={favorite.id} style={{backgroundImage: `url(${favorite.thumbnail.path}/portrait_uncanny.${favorite.thumbnail.extension})`, ...containerStyles}}>
+          <button className="w-10 self-end" onClick={() => handleRemoveFromFavorites(favorite.id)}>  
             <StarFill />
           </button>
-          <img
-            src={`${favorite.thumbnail.path}/portrait_uncanny.${favorite.thumbnail.extension}`}
-            alt={favorite.name}
-          />
-          <span>{favorite.name}</span>
+          <span className="m-5 text-lg">{favorite.name}</span>
         </div>
         ))
       }

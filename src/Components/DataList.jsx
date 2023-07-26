@@ -1,14 +1,12 @@
 import React from "react";
 import DataCard from "./DataCard";
 import ComicModal from "./ComicModal";
-import { useMarvelContext } from "../context/MarvelContext";
 import { searchComicByCharacterIdAPI } from "../Helpers/marvelApi";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 
-const DataList = ({ data }) => {
+const DataList = ({ data, favorites, addToFavorites }) => {
   const [modalData, setModalData] = React.useState(null);
-  const { addToFavorites } = useMarvelContext();
-
+  
   console.log("DATA: ", data)
 
   if (!data || data.length === 0) {
@@ -38,16 +36,18 @@ const DataList = ({ data }) => {
     if (characterData) {
       addToFavorites(characterData);
     }
+    console.log(characterData)
   };
 
   return (
-    <main className="grid grid-cols-4 place-items-center m-5 gap-y-5">
+    <main className="grid grid-cols-4 place-items-center gap-8 min-h-full my-5">
       {data.map((character) => (
         <DataCard
           key={character.id}
           id={character.id}
           title={character.name}
           thumbnail={character.thumbnail}
+          favorites={favorites}
           handleAddToFavorites={() => handleAddToFavorites(character.id)}
           handleOpenModal={() => handleOpenModal(character.id)}
         />
