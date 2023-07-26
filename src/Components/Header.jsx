@@ -1,27 +1,36 @@
 import React from 'react';
-import { StarIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom';
+import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
+import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
+import { useMarvelContext } from '../context/MarvelContext';
 
-
-function Header({ searchValue, onSearch, onFavoritesClick, onSearchInputChange  }) {
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    onSearch();
-  };
+function Header({ value, inputChange, handleSearch, searchType, setSearchType }) {
+  const { favorites } = useMarvelContext()
 
   return (
-    <header className='flex justify-between border-b-2 p-2'>
-      <div className='w-1/12 p-1'>
-        <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />
+    <header className='flex justify-evenly border-b-2 p-2'>
+      <div className='w-1/12 '>
+        <a href="https://www.marvel.com/" target='_blank'>
+          <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />
+        </a>
       </div>
 
-      <form className='flex items-center justify-stretch w-10/12' onSubmit={handleSearchSubmit}>
-        <input type="text" value={searchValue} onChange={onSearchInputChange} placeholder="Search character..." className='border-l-2 w-full p-1 focus:outline-none'/>
+      <form className='flex items-center justify-stretch w-10/12' onSubmit={handleSearch} >
+        <input type="text" value={value} onChange={inputChange}placeholder="Search character..." className='border-l-2 w-full p-1 focus:outline-none'/>
+        <select value={searchType} onChange={(e) => setSearchType(e.target.value)} className='h-full'>
+          <option value="comic">Comic</option>
+          <option value="character">Character</option>
+        </select>
       </form>
 
-      <button onClick={onFavoritesClick} className='w-1/12'>
-        <StarIcon className='w-7 m-auto opacity-50'/>
-      </button>
+      <Link to="/favorites" className='flex items-center'>
+        {
+          favorites.length === 0 ?
+          <StarOutline className='w-7 m-auto opacity-50'/>
+          : 
+          <StarSolid className='w-7 m-auto opacity-50'/>
+        }
+      </Link>
     </header>
   );
 }

@@ -1,46 +1,50 @@
-import { useState } from 'react';
-import Header from './Components/Header'
-import { useEffect } from 'react';
-
-const PUBLIC_KEY = '0a13d695b4d59a3324ab3e0c62ef0a7e'
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./Components/Header";
+import DataList from "./Components/DataList";
+import ComicDetail from "./Components/ComicDetail";
+import Favorites from "./Components/Favorites";
+import Footer from "./Components/Footer";
+import useMarvelSearch from "./Hooks/useMarvelSearch";
 
 function App() {
-  const [searchValue, setSearchValue] = useState('');
-  const [characterData, setCharacterData] = useState([]);
-  const [favoriteCharacters, setFavoriteCharacters] = useState([]);
+  const {
+    type,
+    setType,
+    inputValue,
+    handleInputChange,
+    search,
+    results,
+    setRandomCharacter
+  } = useMarvelSearch();
 
-  // Fetch character data from Marvel API based on character name
-  const fetchCharacterData = async (characterName) => {
-    const response = await fetch(
-      `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&apikey=${PUBLIC_KEY}`
-    );
-    const data = await response.json();
-    // Assuming that the API returns an array of characters, you can update characterData with the response
-    setCharacterData(data?.data?.results);
-    console.log(characterData)
-  };
-
-  // Handle character search
-  const handleCharacterSearch = () => {
-    fetchCharacterData(searchValue);
-  };
-
-  // Handle adding a character to favorites
-  const handleAddToFavorites = (character) => {
-    setFavoriteCharacters([...favoriteCharacters, character]);
-  };
-
+  useEffect(()=> {
+    setRandomCharacter()
+  }, [])
 
   return (
-    <>
+    <div className="h-screen">
       <Header
-        searchValue={searchValue}
-        onSearch={handleCharacterSearch}
-        onSearchInputChange={(e) => setSearchValue(e.target.value)}
-        onFavoritesClick={() => {/* Handle navigation to favorites page */}}
+        value={inputValue}
+        inputChange={handleInputChange}
+        handleSearch={search}
+        searchType={type}
+        setSearchType={setType}
       />
-    </>
-  )
+      <Routes>
+        <Route
+          exact
+          path="/*"
+          element={
+            <DataList data={results} />
+          }
+        />
+        <Route path="/comics/:comic" element={<ComicDetail />} />
+        <Route path="/favorites" element={<Favorites />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
