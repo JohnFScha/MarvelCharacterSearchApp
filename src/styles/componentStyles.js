@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { XCircleIcon, StarIcon as StarOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarFill } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import ComicDetail from "../Components/ComicDetail";
 
 /* Reusable Styles */
 
@@ -172,7 +173,7 @@ export const ComicCover = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  max-width: 20rem;
+  max-width: 12rem;
 `;
 
 export const ModalName = styled.small`
@@ -181,6 +182,7 @@ export const ModalName = styled.small`
 
 export const ModalDescription = styled.p`
   text-align: justify;
+  width: 
 `;
 
 /* Comic Detail */
@@ -205,4 +207,59 @@ export const ComicData = styled.div`
 
 export const ComicDetailCover = styled.img`
   max-width: 24rem;
+`;
+
+/* Small screens */
+
+export const GlobalStyle = createGlobalStyle`
+  /* ... (same CSS reset as before) ... */
+
+  /* Additional styles for small screens (max-width: 640px) */
+  @media (max-width: 326px) {
+    /* Update grid to 2 columns for small screens */
+    ${MainContainer},
+    ${ComicMain} {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      align-items: center;
+    }
+
+    /* Convert flex containers to flex column for small screens */
+    ${CardContainer},
+    ${ModalInside},
+    ${ComicModalContainer},
+    ${ComicData} {
+      flex-direction: column;
+    }
+
+    ${ImageContainer} {
+      width: 85%;
+      padding: 5px;
+    }
+
+    ${Form} {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    ${SearchInput} {
+      width: 100%;
+      border: 1px solid gray;
+      margin-right: 5px;
+      padding: 0;
+    }
+
+    ${StyledHeader} {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    ${ComicDetailCover} {
+      width: 14rem;
+    }
+  }
 `;

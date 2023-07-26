@@ -20,9 +20,9 @@ const ComicDetail = () => {
 
   return comic ? (
     <ComicMain>
-      <div>
+      
         <ComicDetailCover src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
-      </div>
+      
       <ComicData>
         <h1>{comic.title}</h1>
         <p>{parseDate(comic.dates[0].date)}</p>
