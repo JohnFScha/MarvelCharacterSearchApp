@@ -7,7 +7,7 @@ function Header({ value, inputChange, handleSearch, searchType, setSearchType, f
     <StyledHeader>
       <ImageContainer>
         <a href="https://www.marvel.com/" target='_blank'>
-          <img src="src/assets/Marvel_Logo.svg.png" alt="Marvel Logo" />
+          <img src="../assets/Marvel_Logo.svg.png" alt="Marvel Logo" />
         </a>
       </ImageContainer>
 
