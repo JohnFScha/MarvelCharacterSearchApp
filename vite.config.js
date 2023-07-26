@@ -8,6 +8,5 @@ export default defineConfig({
   })],
   define: {
     "process.env": process.env,
-    API_KEY: process.env.API_KEY,
   },
 })
