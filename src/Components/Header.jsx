@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlineIcon, StarFillIcon, Select } from '../styles/componentStyles';
 
 function Header({ value, inputChange, handleSearch, searchType, setSearchType, favorites }) {
@@ -8,7 +7,7 @@ function Header({ value, inputChange, handleSearch, searchType, setSearchType, f
     <StyledHeader>
       <ImageContainer>
         <a href="https://www.marvel.com/" target='_blank'>
-          <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />
+          <img src="../assets/Marvel_Logo.svg.png" alt="Marvel Logo" />
         </a>
       </ImageContainer>
 
