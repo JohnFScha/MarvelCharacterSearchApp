@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://gateway.marvel.com/v1/public";
-const API_KEY = ENV_KEY;
+const API_BASE_URL = process.env.API_BASE_URL;
+const API_KEY = process.env.API_KEY;
 
 export const getCharactersAPI = async () => {
   try {
