@@ -7,6 +7,7 @@ const Favorites = () => {
   
   const handleRemoveFromFavorites = (characterId) => {
     removeFromFavorites(characterId)
+    alert(`${characterId.name} removed.`)
   }
 
   if (favorites.length === 0) {
