@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getCharactersAPI,
   searchByIdAPI,
@@ -9,6 +10,7 @@ const useMarvelSearch = () => {
   const [type, setType] = useState("character");
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState([]);
+  const navigate = useNavigate()
 
   const handleInputChange = 
     (event) => {
@@ -24,6 +26,7 @@ const useMarvelSearch = () => {
       const slicedUrl = inputValue.replace("https://", "").split('/');
       const id = slicedUrl[3];
       result = await searchByIdAPI(id, type);
+      navigate(`comics/${id}`)
     } else {
       result = await searchByNameAPI(inputValue, type);  
     }

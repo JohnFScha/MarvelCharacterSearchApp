@@ -2,13 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
-import { useMarvelContext } from '../context/MarvelContext';
 
-function Header({ value, inputChange, handleSearch, searchType, setSearchType }) {
-  const { favorites } = useMarvelContext()
+function Header({ value, inputChange, handleSearch, searchType, setSearchType, favorites }) {
 
   return (
-    <header className='flex justify-evenly border-b-2 p-2'>
+    <header className='flex justify-evenly border-b-2 p-2 shadow-lg shadow-gray-400 rounded-b-md'>
       <div className='w-1/12 '>
         <a href="https://www.marvel.com/" target='_blank'>
           <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />

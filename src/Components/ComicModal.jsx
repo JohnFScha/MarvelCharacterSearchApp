@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ComicModal = ({ id, thumbnail, title, description }) => {
+
   if (
     !description ||
     description === "" ||
@@ -11,16 +12,16 @@ const ComicModal = ({ id, thumbnail, title, description }) => {
   }
 
   return (
-    <div className="m-auto flex justify-normal items-start w-6/6 gap-3">
+    <div className="m-auto flex justify-normal items-start w-10/12 gap-3 my-10">
       <div className="flex flex-col">
         <Link to={`/comics/${id}`}>
           <img
             src={`${thumbnail.path}.${thumbnail.extension}`}
             alt="title"
-            className="max-w-md"
+            className="max-w-xs"
           />  
         </Link>
-        <h1>{title}</h1>
+        <small className="text-center">{title}</small>
       </div>
       <p className="text-justify">{description}</p>
     </div>
