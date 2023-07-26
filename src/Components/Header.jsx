@@ -10,7 +10,9 @@ function Header({ value, inputChange, handleSearch, searchType, setSearchType })
   return (
     <header className='flex justify-evenly border-b-2 p-2'>
       <div className='w-1/12 '>
-        <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />
+        <a href="https://www.marvel.com/" target='_blank'>
+          <img src="src\assets\Marvel_Logo.svg.png" alt="Marvel Logo" />
+        </a>
       </div>
 
       <form className='flex items-center justify-stretch w-10/12' onSubmit={handleSearch} >

@@ -31,6 +31,20 @@ export const searchByIdAPI = async (id, type) => {
   }
 }
 
+export const searchComicByIdAPI = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/comics/${id}`, {
+      params: {
+        apikey: API_KEY,
+      },
+    });
+    return response.data.data.results;
+  } catch (error) {
+    console.error("Error searching character by id:", error);
+    return null;
+  }
+}
+
 export const searchComicByCharacterIdAPI = async (id) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/characters/${id}/comics?`, {
