@@ -1,13 +1,23 @@
 import styled from "styled-components";
-import {
-  XCircleIcon,
-  StarIcon as StarOutline,
-} from "@heroicons/react/24/outline";
+import { XCircleIcon, StarIcon as StarOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarFill } from "@heroicons/react/24/solid";
-
 import { Link } from "react-router-dom";
 
-/* DataList  */
+/* Reusable Styles */
+
+const cardBackgroundStyles = `
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const flexCenterStyles = `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+/* DataList */
 
 export const MainContainer = styled.main`
   display: grid;
@@ -20,9 +30,7 @@ export const MainContainer = styled.main`
 `;
 
 export const CardContainer = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  ${cardBackgroundStyles}
   width: 91.6667%;
   height: 500px;
   display: flex;
@@ -39,15 +47,13 @@ export const StyledButton = styled.button`
 
 export const StyledName = styled.span`
   margin: 1.25rem; 
-  font-size: 1.125rem; /
+  font-size: 1.125rem;
 `;
 
 export const ModalOutside = styled.div`
   position: fixed;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${flexCenterStyles}
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
@@ -63,9 +69,7 @@ export const ModalInside = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${flexCenterStyles}
 `;
 
 export const Title1 = styled.h1`
@@ -106,9 +110,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const Form = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: stretch;
+  ${flexCenterStyles}
   width: 83.3333%;
 `;
 
@@ -120,12 +122,11 @@ export const SearchInput = styled.input`
 `;
 
 export const Select = styled.select`
-  h: 100%;
+  height: 100%;
 `;
 
 export const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
+  ${flexCenterStyles}
 `;
 
 export const StarOutlineIcon = styled(StarOutline)`
@@ -158,9 +159,7 @@ export const FooterTitle = styled.h1`
 
 export const ComicModalContainer = styled.div`
   margin: auto;
-  display: flex;
-  justify-content: normal;
-  align-items: flex-start;
+  ${flexCenterStyles}
   width: 83.3333%;
   gap: 0.75rem;
   margin-top: 2.5rem;
@@ -189,9 +188,9 @@ export const ComicMain = styled.main`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-items: center;
-  padding: 1.25rem; 
-  width: 83.3333%; 
-  margin: auto; 
+  padding: 1.25rem;
+  width: 83.3333%;
+  margin: auto;
 `;
 
 export const ComicData = styled.div`
@@ -199,7 +198,7 @@ export const ComicData = styled.div`
   flex-direction: column;
   gap: 1.25rem;
   text-align: justify;
-  justify-content: center;
+  ${flexCenterStyles}
   font-size: 1.125rem;
 `;
 
