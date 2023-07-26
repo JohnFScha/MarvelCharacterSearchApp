@@ -6,4 +6,8 @@ export default defineConfig({
   plugins: [react({
     include: "**/*.js,jsx",
   })],
+  define: {
+    "process.env": process.env,
+    API_KEY: process.env.API_KEY,
+  },
 })
