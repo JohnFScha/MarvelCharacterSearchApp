@@ -1,11 +1,12 @@
 import React from "react";
-import { MainContainer, CardContainer, StyledButton, StarFillIcon, StyledName, EmptyFavs } from "../styles/componentStyles";
+import { MainContainer, CardContainer, StyledButton, StarFillIcon, StyledName, EmptyFavs, CharacterImg } from "../styles/componentStyles";
+import { useMarvelContext } from "../context/MarvelContext";
 
-const Favorites = ({ favorites, removeFromFavorites }) => {
+const Favorites = () => {
+  const { favorites, removeFromFavorites } = useMarvelContext();
   
   const handleRemoveFromFavorites = (favorite) => {
     removeFromFavorites(favorite)
-    alert(`${favorite.name} removed.`)
   }
 
   if (favorites.length === 0) {
@@ -18,10 +19,11 @@ const Favorites = ({ favorites, removeFromFavorites }) => {
     <MainContainer>
       { 
       favorites.map((favorite) => (
-        <CardContainer key={favorite.id} style={{backgroundImage: `url(${favorite.thumbnail.path}/portrait_uncanny.${favorite.thumbnail.extension})`}}>
+        <CardContainer key={favorite.id}>
           <StyledButton onClick={() => handleRemoveFromFavorites(favorite.id)}>  
             <StarFillIcon />
           </StyledButton>
+          <CharacterImg src={`${favorite.thumbnail.path}/portrait_uncanny.${favorite.thumbnail.extension}`} alt={favorite.name} />
           <StyledName>{favorite.name}</StyledName>
         </CardContainer>
         ))

@@ -3,7 +3,6 @@ import axios from "axios";
 const API_BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
-
 export const getCharactersAPI = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/characters`, {
@@ -14,13 +13,13 @@ export const getCharactersAPI = async () => {
     return response.data.data.results;
   } catch (error) {
     console.error("Error fetching comic by URL:", error);
-    return null;
+    return [];
   }
 };
 
-export const searchByIdAPI = async (id, type) => {
+export const searchByIdAPI = async (id) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${type}s/${id}`, {
+    const response = await axios.get(`${API_BASE_URL}/comics/${id}`, {
       params: {
         apikey: API_KEY,
       },
@@ -28,7 +27,7 @@ export const searchByIdAPI = async (id, type) => {
     return response.data.data.results;
   } catch (error) {
     console.error("Error searching character by id:", error);
-    return null;
+    return [];
   }
 }
 
@@ -42,7 +41,7 @@ export const searchComicByIdAPI = async (id) => {
     return response.data.data.results;
   } catch (error) {
     console.error("Error searching character by id:", error);
-    return null;
+    return [];
   }
 }
 
@@ -56,21 +55,21 @@ export const searchComicByCharacterIdAPI = async (id) => {
     return response.data.data.results;
   } catch (error) {
     console.error("Error searching character by id:", error);
-    return null;
+    return [];
   }
 }
 
-export const searchByNameAPI = async (name, type) => {
+export const searchByNameAPI = async (name) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${type}s`, {
+    const response = await axios.get(`${API_BASE_URL}/characters`, {
       params: {
-        [type === "comic" ? "titleStartsWith" : "nameStartsWith"]: name,
+        nameStartsWith: name,
         apikey: API_KEY,
       },
     });
     return response.data.data.results;
   } catch (error) {
     console.error("Error searching character by name:", error);
-    return null;
+    return [];
   }
 }

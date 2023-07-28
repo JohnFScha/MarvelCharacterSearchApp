@@ -1,21 +1,25 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { XCircleIcon, StarIcon as StarOutline } from "@heroicons/react/24/outline";
+import {
+  XCircleIcon,
+  StarIcon as StarOutline,
+} from "@heroicons/react/24/outline";
 import { StarIcon as StarFill } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
-import ComicDetail from "../Components/ComicDetail";
 
 /* Reusable Styles */
-
-const cardBackgroundStyles = `
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
 
 const flexCenterStyles = `
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 `;
 
 /* DataList */
@@ -31,24 +35,35 @@ export const MainContainer = styled.main`
 `;
 
 export const CardContainer = styled.div`
-  ${cardBackgroundStyles}
-  width: 91.6667%;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 0.375rem;
-  color: #f7f7f7;
+width: 91.6667%;
+display: flex;
+height: 25rem;
+flex-direction: column;
+justify-content: space-between;
+color: #f7f7f7;
+position: relative;
+
+&:after {
+  content:""; 
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);
+  height: 50%;
+}
 `;
 
 export const StyledButton = styled.button`
   width: 2.5rem;
   align-self: flex-end;
+  z-index: 10;
 `;
 
 export const StyledName = styled.span`
-  margin: 1.25rem; 
+  margin: 1.25rem;
   font-size: 1.125rem;
+  z-index: 10;
 `;
 
 export const ModalOutside = styled.div`
@@ -71,9 +86,10 @@ export const ModalInside = styled.div`
 
 export const ModalContainer = styled.div`
   ${flexCenterStyles}
+  justify-content: space-between;
 `;
 
-export const Title1 = styled.h1`
+export const Title1 = styled.h2`
   font-size: 1.875rem;
   color: #f56565;
   margin-left: 0.75rem;
@@ -89,7 +105,7 @@ export const ModalWarning = styled.h1`
   margin-top: 10rem;
 `;
 
-export const EmptyFavs = styled.h1`
+export const EmptyFavs = styled.h2`
   height: 43vh;
   text-align: center;
   margin-top: 18rem;
@@ -101,14 +117,13 @@ export const EmptyFavs = styled.h1`
 export const StyledHeader = styled.header`
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 1px solid;
-  padding: 0.5rem;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.8);
+  padding: 1rem;
   box-shadow: 2px 2px 2px 2px rgba(156, 163, 175, 0.4);
-  border-radius: 0 0 0.375rem 0.375rem;
 `;
 
 export const ImageContainer = styled.div`
-  width: 8.3333%;
+  width: 10%;
 `;
 
 export const Form = styled.form`
@@ -117,7 +132,9 @@ export const Form = styled.form`
 `;
 
 export const SearchInput = styled.input`
-  border-left-width: 2px;
+  border-left-width: 1px;
+  border-left-color: rgba(153, 153, 153, 0.5);
+  border-left-style: solid;
   width: 100%;
   padding: 0.25rem;
   outline: none;
@@ -132,13 +149,13 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StarOutlineIcon = styled(StarOutline)`
-  width: 1.75rem;
+  width: 2.5rem;
   display: block;
   margin: 0 auto;
 `;
 
 export const StarFillIcon = styled(StarFill)`
-  width: 1.75rem;
+  width: 2.5rem;
   display: block;
   margin: 0 auto;
 `;
@@ -153,8 +170,46 @@ export const StyledFooter = styled.footer`
   width: 100%;
 `;
 
-export const FooterTitle = styled.h1`
+export const FooterTitle = styled.h2`
   text-align: center;
+`;
+
+/* Character Card */
+
+export const CharacterContainer = styled.div`
+  width: 91.6667%;
+  display: flex;
+  height: 25rem;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #f7f7f7;
+  position: relative;
+
+  &:after {
+    content:""; 
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);
+    height: 50%;
+  }
+`;
+
+export const CharacterImg = styled.img`
+  width: 100%;
+  height: 100%; 
+  object-fit: fill;
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  border-radius: 0.5rem;
+`;
+
+export const CharacterAddToFav = styled.button`
+  width: 2.5rem;
+  align-self: flex-end;
+  z-index: 10;
 `;
 
 /* Comic Modal */
@@ -182,7 +237,7 @@ export const ModalName = styled.small`
 
 export const ModalDescription = styled.p`
   text-align: justify;
-  width: 
+  width: ;
 `;
 
 /* Comic Detail */
@@ -212,11 +267,7 @@ export const ComicDetailCover = styled.img`
 /* Small screens */
 
 export const GlobalStyle = createGlobalStyle`
-  /* ... (same CSS reset as before) ... */
-
-  /* Additional styles for small screens (max-width: 640px) */
   @media (max-width: 326px) {
-    /* Update grid to 2 columns for small screens */
     ${MainContainer},
     ${ComicMain} {
       grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -224,7 +275,6 @@ export const GlobalStyle = createGlobalStyle`
       align-items: center;
     }
 
-    /* Convert flex containers to flex column for small screens */
     ${CardContainer},
     ${ModalInside},
     ${ComicModalContainer},

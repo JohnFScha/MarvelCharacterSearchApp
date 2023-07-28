@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import parseDate from "../utils/parseDate";
 import { useParams } from "react-router-dom";
-import { searchComicByIdAPI } from "../Helpers/marvelApi";
+import { searchComicByIdAPI } from "../api/marvelApi";
 import { ComicMain, ComicData, ComicDetailCover } from "../styles/componentStyles";
 
 const ComicDetail = () => {

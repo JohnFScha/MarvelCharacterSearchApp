@@ -1,82 +1,37 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./Components/Header";
-import DataList from "./Components/DataList";
-import ComicDetail from "./Components/ComicDetail";
-import Favorites from "./Components/Favorites";
-import Footer from "./Components/Footer";
+import Header from "./components/Header";
+import CharacterList from "./components/CharacterList";
+import ComicDetail from "./components/ComicDetail";
+import Favorites from "./components/Favorites";
+import Footer from "./components/Footer";
 import useMarvelSearch from "./Hooks/useMarvelSearch";
+import { useMarvelContext } from "./context/MarvelContext";
 
 function App() {
-  const [favorites, setFavorites] = useState(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
-  });
-
   const {
-    type,
-    setType,
-    inputValue,
-    handleInputChange,
-    search,
-    results,
     setRandomCharacter
   } = useMarvelSearch();
-  
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+
+  const {results} = useMarvelContext()
 
   useEffect(()=> {
     setRandomCharacter()
   }, [])
 
-  
-  const addToFavorites = useCallback(
-    (data) => {
-      if (favorites.some((char) => char.id === data.id)) {
-        alert(`${data.name} already Faved.`);
-      } else {
-        setFavorites((prevFav) => {
-          const updatedFavorites = [...prevFav, data];
-          localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-          return updatedFavorites;
-        });
-      }
-    },
-    [favorites]
-  );
-  
-  const removeFromFavorites = useCallback((characterId) => {
-    setFavorites((prevFavorites) => {
-      const updatedFavorites = prevFavorites.filter(
-        (favorite) => favorite.id !== characterId
-      );
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      return updatedFavorites;
-    });
-  }, []);
-
   return (
     <div className="h-screen">
-      <Header
-        value={inputValue}
-        inputChange={handleInputChange}
-        handleSearch={search}
-        searchType={type}
-        setSearchType={setType}
-        favorites={favorites}
-      />
+      <Header/>
       <Routes>
         <Route
           exact
           path="/*"
           element={
-            <DataList data={results} favorites={favorites} addToFavorites={addToFavorites}/>
+            <CharacterList />
           }
         />
         <Route path="/comics/:comic" element={<ComicDetail />} />
-        <Route path="/favorites" element={<Favorites favorites={favorites} removeFromFavorites={removeFromFavorites}/>} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
       <Footer />
     </div>

@@ -4,12 +4,12 @@ import {
   getCharactersAPI,
   searchByIdAPI,
   searchByNameAPI
-} from "../Helpers/marvelApi";
+} from "../api/marvelApi";
+import { useMarvelContext } from "../context/MarvelContext";
 
 const useMarvelSearch = () => {
-  const [type, setType] = useState("character");
   const [inputValue, setInputValue] = useState("");
-  const [results, setResults] = useState([]);
+  const { setResults } = useMarvelContext();
   const navigate = useNavigate()
 
   const handleInputChange = 
@@ -17,18 +17,16 @@ const useMarvelSearch = () => {
       setInputValue(event.target.value);
     }
     
-  const search = async (e) => {
-    e.preventDefault()
-    let result = null
+  const search = async (inputValue) => {
+    let result = []
     const marvelUrl = "https://www.marvel.com/comics/issue/"
-    const isURL = inputValue.startsWith(marvelUrl)
-    if (type === 'comic' && isURL) {
+    if (inputValue.startsWith(marvelUrl)) {
       const slicedUrl = inputValue.replace("https://", "").split('/');
       const id = slicedUrl[3];
-      result = await searchByIdAPI(id, type);
+      result = await searchByIdAPI(id);
       navigate(`comics/${id}`)
     } else {
-      result = await searchByNameAPI(inputValue, type);  
+      result = await searchByNameAPI(inputValue);  
     }
     setResults(result);
   }
@@ -41,12 +39,8 @@ const useMarvelSearch = () => {
   }
   
   return {
-    type,
-    setType,
     inputValue,
     setInputValue,
-    results,
-    setResults,
     handleInputChange,
     search,
     setRandomCharacter

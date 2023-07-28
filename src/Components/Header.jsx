@@ -1,8 +1,16 @@
 import React from 'react';
-import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlineIcon, StarFillIcon, Select } from '../styles/componentStyles';
+import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlineIcon, StarFillIcon } from '../styles/componentStyles';
+import { useMarvelContext } from '../context/MarvelContext';
+import useMarvelSearch from '../Hooks/useMarvelSearch';
 
-function Header({ value, inputChange, handleSearch, searchType, setSearchType, favorites }) {
+function Header() {
+  const { favorites } = useMarvelContext();
+  const { search, inputValue, handleInputChange } = useMarvelSearch();
 
+  const handleSearch = (e) => {
+    e.preventDefault()
+    search(inputValue)
+  }
   return (
     <StyledHeader>
       <ImageContainer>
@@ -12,11 +20,7 @@ function Header({ value, inputChange, handleSearch, searchType, setSearchType, f
       </ImageContainer>
 
       <Form onSubmit={handleSearch} >
-        <SearchInput type="text" value={value} onChange={inputChange}placeholder="Search character..." />
-        <Select value={searchType} onChange={(e) => setSearchType(e.target.value)} className='h-full'>
-          <option value="comic">Comic</option>
-          <option value="character">Character</option>
-        </Select>
+        <SearchInput type="text" value={inputValue} onChange={handleInputChange}placeholder="Search character..." />
       </Form>
 
       <StyledLink to="/favorites">

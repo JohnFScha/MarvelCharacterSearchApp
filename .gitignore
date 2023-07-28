@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+.env
 .eslintrc.cjs
 pnpm-lock.yaml
 postcss.config.js
