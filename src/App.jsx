@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from './components/Header'
+import Header from './components/Header';
 import CharacterList from "./components/CharacterList";
 import ComicDetail from "./components/ComicDetail";
 import Favorites from "./components/Favorites";
