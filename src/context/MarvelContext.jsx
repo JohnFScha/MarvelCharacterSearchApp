@@ -1,10 +1,13 @@
 import React, {createContext, useState, useContext, useCallback} from "react";
+import { searchComicByIdAPI } from "../api/marvelApi";
+
 
 const MarvelContext = createContext()
 
 const MarvelProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [modalData, setModalData] = React.useState(null);
+  const [comic, setComic] = useState(null);
   const [favorites, setFavorites] = useState(() => {
     const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -24,6 +27,11 @@ const MarvelProvider = ({ children }) => {
     },
     [favorites]
   );
+
+  const comicData = async (id) => {
+    const result = await searchComicByIdAPI(id.comic);
+    setComic(result[0]);
+  };
 
   const removeFromFavorites = useCallback((characterId) => {
     setFavorites((prevFavorites) => {
@@ -50,7 +58,9 @@ const MarvelProvider = ({ children }) => {
         removeFromFavorites,
         modalData,
         setModalData,
-        handleCloseModal
+        handleCloseModal,
+        comic,
+        comicData
       }}
     >
       {children}

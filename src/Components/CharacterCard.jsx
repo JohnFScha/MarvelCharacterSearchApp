@@ -2,7 +2,7 @@ import React, {useCallback} from "react";
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarFill } from '@heroicons/react/24/solid';
 import { useMarvelContext } from "../context/MarvelContext";
-import { CharacterContainer, CharacterAddToFav, CharacterImg } from "../styles/componentStyles";
+import { CharacterContainer, StyledButton, CharacterImg } from "../styles/componentStyles";
 import { searchComicByCharacterIdAPI } from "../api/marvelApi";
 
 const CharacterCard = ({ id, title, thumbnail }) => {
@@ -14,7 +14,7 @@ const CharacterCard = ({ id, title, thumbnail }) => {
     return null;
   }
 
-  const handleOpenModal = async (characterId) => {
+  const handleOpenModal = async(characterId) => {
     const characterData = results.find(
       (character) => character.id === characterId
     );
@@ -24,7 +24,8 @@ const CharacterCard = ({ id, title, thumbnail }) => {
       <SpinnerContainer>
         <TailSpin color="red" wrapperClass="wrapper" />
       </SpinnerContainer> 
-      ) 
+      )
+       
     } else {
       const result = await searchComicByCharacterIdAPI(characterData.id);
       setModalData(result);
@@ -43,11 +44,11 @@ const CharacterCard = ({ id, title, thumbnail }) => {
 
   return (
     <CharacterContainer> 
-      <CharacterAddToFav onClick={() => handleAddToFavorites(id)}>  
+      <StyledButton onClick={() => handleAddToFavorites(id)}>  
         {favorites.some((char) => char.id === id) ? <StarFill /> : <StarOutline />}
-      </CharacterAddToFav>
-      <CharacterImg src={`${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`} alt={title} />
-      <h3 className="m-5 text-lg z-10" onClick={() => handleOpenModal(id)}>{title}</h3>
+      </StyledButton>
+      <CharacterImg src={`${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`} alt={title} onClick={() => handleOpenModal(id)} />
+      <h3>{title}</h3>
     </CharacterContainer>
   );
 };

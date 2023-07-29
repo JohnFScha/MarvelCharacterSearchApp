@@ -1,5 +1,5 @@
 import React from "react";
-import { MainContainer, CardContainer, StyledButton, StarFillIcon, StyledName, EmptyFavs, CharacterImg } from "../styles/componentStyles";
+import { MainContainer, CardContainer, StyledButton, StarFillIcon, StyledName, EmptyFavs, CharacterImg, FavoriteSection} from "../styles/componentStyles";
 import { useMarvelContext } from "../context/MarvelContext";
 
 const Favorites = () => {
@@ -10,13 +10,11 @@ const Favorites = () => {
   }
 
   if (favorites.length === 0) {
-    return (
-      <EmptyFavs>nothing here...</EmptyFavs>
-    )
+    return <EmptyFavs>Add favorites to be shown here.</EmptyFavs>
   }
    
   return (
-    <MainContainer>
+    <FavoriteSection>
       { 
       favorites.map((favorite) => (
         <CardContainer key={favorite.id}>
@@ -28,7 +26,7 @@ const Favorites = () => {
         </CardContainer>
         ))
       }
-    </MainContainer>
+    </FavoriteSection>
   );
 };
 

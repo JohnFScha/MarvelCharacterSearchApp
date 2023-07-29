@@ -34,29 +34,38 @@ export const MainContainer = styled.main`
   margin: 1.25rem;
 `;
 
-export const CardContainer = styled.div`
-width: 91.6667%;
-display: flex;
-height: 25rem;
-flex-direction: column;
-justify-content: space-between;
-color: #f7f7f7;
-position: relative;
+export const CardContainer = styled.article`
+  width: 91.6667%;
+  display: flex;
+  height: 25rem;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #f7f7f7;
+  position: relative;
 
-&:after {
-  content:""; 
-  position: absolute; 
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);
-  height: 50%;
-}
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    height: 50%;
+  }
 `;
 
 export const StyledButton = styled.button`
-  width: 2.5rem;
+  width: 3rem;
   align-self: flex-end;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  color: black;
+  backdrop-filter: blur(50px);
+  border-radius: 50%;
   z-index: 10;
 `;
 
@@ -105,11 +114,20 @@ export const ModalWarning = styled.h1`
   margin-top: 10rem;
 `;
 
+export const FavoriteSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  place-items: center;
+  gap: 2rem;
+  min-height: 100vh;
+  margin: 1.25rem;
+`;
+
 export const EmptyFavs = styled.h2`
-  height: 43vh;
-  text-align: center;
-  margin-top: 18rem;
   font-size: x-large;
+  height: 71vh;
+  margin: 1rem;
 `;
 
 /* Header */
@@ -119,7 +137,7 @@ export const StyledHeader = styled.header`
   justify-content: space-evenly;
   border-bottom: 1px solid rgba(150, 150, 150, 0.8);
   padding: 1rem;
-  box-shadow: 2px 2px 2px 2px rgba(156, 163, 175, 0.4);
+  box-shadow: 5px 10px 20px 1px rgba(156, 163, 175, 0.4);
 `;
 
 export const ImageContainer = styled.div`
@@ -136,7 +154,9 @@ export const SearchInput = styled.input`
   border-left-color: rgba(153, 153, 153, 0.5);
   border-left-style: solid;
   width: 100%;
-  padding: 0.25rem;
+  height: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
   outline: none;
 `;
 
@@ -146,6 +166,8 @@ export const Select = styled.select`
 
 export const StyledLink = styled(Link)`
   ${flexCenterStyles}
+  border-left: 1px solid rgba(150, 150, 150, 0.7);
+  padding-left: 0.5rem;
 `;
 
 export const StarOutlineIcon = styled(StarOutline)`
@@ -176,7 +198,7 @@ export const FooterTitle = styled.h2`
 
 /* Character Card */
 
-export const CharacterContainer = styled.div`
+export const CharacterContainer = styled.article`
   width: 91.6667%;
   display: flex;
   height: 25rem;
@@ -186,30 +208,41 @@ export const CharacterContainer = styled.div`
   position: relative;
 
   &:after {
-    content:""; 
-    position: absolute; 
+    content: "";
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
     height: 50%;
+    border-radius: 0.5rem;
+  }
+
+  & h3 {
+    margin: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    z-index: 10;
   }
 `;
 
 export const CharacterImg = styled.img`
   width: 100%;
-  height: 100%; 
+  height: 100%;
   object-fit: fill;
-  position: absolute; 
-  top: 0; 
+  position: absolute;
+  top: 0;
   left: 0;
   border-radius: 0.5rem;
-`;
 
-export const CharacterAddToFav = styled.button`
-  width: 2.5rem;
-  align-self: flex-end;
-  z-index: 10;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /* Comic Modal */
@@ -237,12 +270,12 @@ export const ModalName = styled.small`
 
 export const ModalDescription = styled.p`
   text-align: justify;
-  width: ;
+  font-size: 1rem;
 `;
 
 /* Comic Detail */
 
-export const ComicMain = styled.main`
+export const ComicMain = styled.section`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-items: center;
@@ -254,14 +287,24 @@ export const ComicMain = styled.main`
 export const ComicData = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 1.25rem;
   text-align: justify;
-  ${flexCenterStyles}
   font-size: 1.125rem;
+
+  & h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  & p {
+    font-size: 1.2rem;
+  }
 `;
 
 export const ComicDetailCover = styled.img`
-  max-width: 24rem;
+  max-width: 26rem;
+  margin: auto 0;
 `;
 
 /* Small screens */

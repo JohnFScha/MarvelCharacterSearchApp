@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect } from "react";
 import parseDate from "../utils/parseDate";
+import { TailSpin } from 'react-loader-spinner'
 import { useParams } from "react-router-dom";
-import { searchComicByIdAPI } from "../api/marvelApi";
-import { ComicMain, ComicData, ComicDetailCover } from "../styles/componentStyles";
+import { ComicMain, ComicData, ComicDetailCover, SpinnerContainer} from "../styles/componentStyles";
+import { useMarvelContext } from "../context/MarvelContext";
 
 const ComicDetail = () => {
-  const [comic, setComic] = useState(null);
+  const { comic, comicData } = useMarvelContext();
   const id = useParams();
-  console.log(comic);
-
-  const comicData = async () => {
-    const result = await searchComicByIdAPI(id.comic);
-    setComic(result[0]);
-  };
 
   useEffect(() => {
-    comicData();
+    comicData(id);
   }, []);
+  
+  if(!comic) {
+    return (
+      <SpinnerContainer>
+        <TailSpin color="red" wrapperClass="wrapper" />
+      </SpinnerContainer>
+    )
+  }
 
-  return comic ? (
+  return (
     <ComicMain>
-      
-        <ComicDetailCover src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
-      
+      <ComicDetailCover src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
       <ComicData>
-        <h1>{comic.title}</h1>
+        <h2>{comic.title}</h2>
         <p>{parseDate(comic.dates[0].date)}</p>
         <ul>
           {comic.creators.items.map((creator) => 
@@ -34,9 +35,7 @@ const ComicDetail = () => {
         <p>{comic.description}</p>
       </ComicData>
     </ComicMain>
-  ) : (
-    <h1>No data</h1>
-  );
+  )
 };
 
 export default ComicDetail;
