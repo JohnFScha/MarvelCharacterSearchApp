@@ -1,5 +1,5 @@
 import React from "react";
-import { MainContainer, CardContainer, StyledButton, StarFillIcon, StyledName, EmptyFavs, CharacterImg, FavoriteSection} from "../styles/componentStyles";
+import { CardContainer, StyledButton, StarFillIcon, StyledName, EmptyFavs, CharacterImg, FavoriteSection} from "../styles/componentStyles";
 import { useMarvelContext } from "../context/MarvelContext";
 
 const Favorites = () => {

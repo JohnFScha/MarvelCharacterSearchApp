@@ -5,7 +5,7 @@ import CharacterList from "./components/CharacterList";
 import ComicDetail from "./components/ComicDetail";
 import Favorites from "./components/Favorites";
 import Footer from "./components/Footer";
-import useMarvelSearch from "./Hooks/useMarvelSearch";
+import useMarvelSearch from "./hooks/useMarvelSearch";
 
 function App() {
   const {

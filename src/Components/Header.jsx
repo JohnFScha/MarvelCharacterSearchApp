@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlineIcon, StarFillIcon } from '../styles/componentStyles';
 import { useMarvelContext } from '../context/MarvelContext';
-import useMarvelSearch from '../Hooks/useMarvelSearch';
+import useMarvelSearch from '../hooks/useMarvelSearch';
 
 function Header() {
   const { favorites } = useMarvelContext();
@@ -11,6 +11,7 @@ function Header() {
     e.preventDefault()
     search(inputValue)
   }
+
   return (
     <StyledHeader>
       <ImageContainer>
