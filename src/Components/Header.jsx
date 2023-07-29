@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlineIcon, StarFillIcon } from '../styles/componentStyles';
 import { useMarvelContext } from '../context/MarvelContext';
 import useMarvelSearch from '../hooks/useMarvelSearch';
 
 function Header() {
   const { favorites } = useMarvelContext();
-  const { search, inputValue, handleInputChange } = useMarvelSearch();
+  const { search, inputValue, handleInputChange, setRandomCharacter } = useMarvelSearch();
+
+  useEffect(()=> {
+    setRandomCharacter()
+  }, [])
 
   const handleSearch = (e) => {
     e.preventDefault()

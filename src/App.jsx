@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from './components/Header';
 import CharacterList from "./components/CharacterList";
 import ComicDetail from "./components/ComicDetail";
 import Favorites from "./components/Favorites";
 import Footer from "./components/Footer";
-import useMarvelSearch from "./hooks/useMarvelSearch";
 
 function App() {
-  const {
-    setRandomCharacter
-  } = useMarvelSearch();
-
-  useEffect(()=> {
-    setRandomCharacter()
-  }, [])
-
+  
   return (
     <>
       <Header/>

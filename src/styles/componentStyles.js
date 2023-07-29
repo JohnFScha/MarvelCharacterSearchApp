@@ -80,6 +80,7 @@ export const ModalOutside = styled.div`
   inset: 0;
   ${flexCenterStyles}
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
 `;
 
 export const ModalInside = styled.div`
