@@ -4,14 +4,15 @@ Welcome to the documentation page for the Marvel Character Search app. This page
 
 ## Table of Contents
 
-1.  [Local Installation](##Local-Installation)
-2.  [Local Implementation](##Local-Implementation)
-3.  [Remote Implementation](##Remote-Implementation)
-4.  [Dependencies](##Dependencies)
-5.  [How to Install Dependencies](##How-to-Install-Dependencies)
-6.  [App Contents](##App-contents)
+1.  [Local Installation](#local-installation)
+2.  [Local Implementation](#local-implementation)
+3.  [Remote Implementation](#remote-implementation)
+4.  [Dependencies](#dependencies)
+5.  [How to Install Dependencies](#how-to-install-dependencies)
+6.  [App Contents](#app-contents)
+7.  [Thanks](#thanks)
 
-## Local-Installation
+## [Local Installation](#local-installation)
 
 To install the app locally, follow these steps:
 
@@ -27,15 +28,15 @@ To install the app locally, follow these steps:
 
 `npm install` 
 
-## Local-Implementation
+## [Local Implementation](#local-implementation)
 
 After installing the app locally, you can run it on your development server using the following command:
 
-`npm run dev` 
+`vite run dev` 
 
-The app should now be running on `http://localhost:3000` in your web browser. You can access it by opening the provided URL.
+The app should now be running on `http://localhost:5173` in your web browser. You can access it by opening the provided URL.
 
-## Remote-Implementation
+## [Remote Implementation](#remote-implementation)
 
 To implement the app remotely, you will need to deploy it to a web server or hosting service. One popular option is to use Vercel or Netlify for easy deployment.
 
@@ -48,7 +49,7 @@ To implement the app remotely, you will need to deploy it to a web server or hos
 4.  Deploy the app: Trigger the deployment process, and the app will be automatically deployed to a public URL provided by Vercel or Netlify.
     
 
-## Dependencies
+## [Dependencies](#dependencies)
 
 The Marvel Character Search app relies on the following dependencies:
 
@@ -77,7 +78,7 @@ Additionally, the app has devDependencies for development purposes:
 -   "tailwindcss": ^3.3.3
 -   "vite": ^4.4.0
 
-## How-to-Install-Dependencies
+## [How to Install Dependencies](#how-to-install-dependencies)
 
 As mentioned earlier, the Node.js dependencies can be installed by running the following command within the app's directory:
 
@@ -87,7 +88,7 @@ This will install all the required dependencies listed in the `package.json` fil
 
 Congratulations! You now have the Marvel Character Search app installed and ready to be implemented either locally or remotely. Have fun exploring Marvel's characters and comics!
 
-## App-contents
+## [App contents](#app-contents)
 
 The app consist of three main parts:
 
@@ -121,7 +122,7 @@ If instead a link was provided, it'll return a preview detail page for that comi
 
 If a character has been added to favorites, it will be shown in this section. Clicking on the star icon will now remove that character from favs.
 
-## Thanks
+## [Thanks](#thanks)
 
 I want to finish this by thanking the staff at [Leniolabs_](https://www.leniolabs.com/) for hosting thw 2023 edition of their Frontend Bootcamp. It has been a privilage to work with talented and experienced programmers from around the world. This simple yet complex app is the result of the effort poured into this 3 months of work.
 
