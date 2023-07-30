@@ -3,7 +3,7 @@ import { StyledHeader, ImageContainer, Form, SearchInput, StyledLink, StarOutlin
 import { useMarvelContext } from '../context/MarvelContext';
 import useMarvelSearch from '../hooks/useMarvelSearch';
 
-function Header() {
+const Header = () => {
   const { favorites } = useMarvelContext();
   const { search, inputValue, handleInputChange, setRandomCharacter } = useMarvelSearch();
 
@@ -20,7 +20,7 @@ function Header() {
     <StyledHeader>
       <ImageContainer>
         <a href="https://www.marvel.com/" target='_blank'>
-          <img src="./src/assets/Marvel_Logo.png" alt="Marvel Logo" />
+          <img src="../public/assets/Marvel_Logo.png" alt="Marvel Logo" />
         </a>
       </ImageContainer>
 

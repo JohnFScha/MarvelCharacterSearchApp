@@ -6,7 +6,7 @@ import ComicDetail from "./components/ComicDetail.jsx";
 import Favorites from "./components/Favorites.jsx";
 import Footer from "./components/Footer.jsx";
 
-function App() {
+const App = () => {
   
   return (
     <>
