@@ -55,6 +55,7 @@ export const CardContainer = styled.article`
       rgba(0, 0, 0, 1) 100%
     );
     height: 50%;
+    border-radius: 0.5rem;
   }
 `;
 

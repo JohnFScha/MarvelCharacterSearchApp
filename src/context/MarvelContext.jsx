@@ -1,6 +1,6 @@
-import React, {createContext, useState, useContext, useCallback} from "react";
+import React, {createContext, useState, useContext, useCallback, useEffect} from "react";
 import { searchComicByIdAPI } from "../api/marvelApi";
-
+import Cookies from 'js-cookie';
 
 const MarvelContext = createContext()
 
@@ -9,25 +9,26 @@ const MarvelProvider = ({ children }) => {
   const [modalData, setModalData] = React.useState(null);
   const [comic, setComic] = useState(null);
   const [favorites, setFavorites] = useState(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
+    const storedFavorites = Cookies.get("favorites");
+    return storedFavorites ? JSON.parse(storedFavorites) : []
   });
 
-  const addToFavorites = useCallback(
-    (data) => {
+  useEffect(() => {
+    Cookies.set("favorites", JSON.stringify(favorites), { expires: 7 });
+  }, [favorites]);
+
+
+  const addToFavorites = useCallback((data) => {
       if (favorites.some((char) => char.id === data.id)) {
-        alert(`${data.name} already Faved.`);
+        return;
       } else {
         setFavorites((prevFav) => {
-          const updatedFavorites = [...prevFav, data];
-          localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-          return updatedFavorites;
+          const updatedFavorites = [...prevFav, {id: data.id, thumbnail: data.thumbnail, name: data.name}];
+          return Cookies.set("favorites", JSON.stringify(updatedFavorites), {expires: 7}), updatedFavorites;
         });
       }
-    },
-    [favorites]
-  );
-
+    }, [favorites]);
+  
   const comicData = async (id) => {
     const result = await searchComicByIdAPI(id.comic);
     setComic(result[0]);
@@ -35,18 +36,15 @@ const MarvelProvider = ({ children }) => {
 
   const removeFromFavorites = useCallback((characterId) => {
     setFavorites((prevFavorites) => {
-      const updatedFavorites = prevFavorites.filter(
-        (favorite) => favorite.id !== characterId
-      );
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      const updatedFavorites = prevFavorites.filter((favorite) => favorite.id !== characterId);
+      Cookies.set("favorites", JSON.stringify(updatedFavorites), {expires: 7});
       return updatedFavorites;
     });
-  }, []);
+  }, [favorites]);
 
   const handleCloseModal = () => {
     setModalData(null);
   };
-
 
   return (
     <MarvelContext.Provider

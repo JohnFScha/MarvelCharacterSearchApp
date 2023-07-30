@@ -33,13 +33,11 @@ const CharacterCard = ({ id, title, thumbnail }) => {
   }
 
   const handleAddToFavorites = (characterId) => {
-    const characterData = results.find(
-      (character) => character.id === characterId
-    );
+    const characterData = results.find((character) => character.id === characterId);
+    console.log(characterData)
     if (characterData) {
       addToFavorites(characterData);
     }
-    console.log(characterData)
   };
 
   return (

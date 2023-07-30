@@ -4,6 +4,8 @@ import { useMarvelContext } from "../context/MarvelContext";
 
 const Favorites = () => {
   const { favorites, removeFromFavorites } = useMarvelContext();
+
+  console.log("FAVORITES: ", favorites)
   
   const handleRemoveFromFavorites = (favorite) => {
     removeFromFavorites(favorite)
