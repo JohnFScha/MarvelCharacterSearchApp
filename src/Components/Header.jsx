@@ -20,7 +20,7 @@ function Header() {
     <StyledHeader>
       <ImageContainer>
         <a href="https://www.marvel.com/" target='_blank'>
-          <img src="./assets/Marvelo_Logo.png" alt="Marvel Logo" />
+          <img src="./src/assets/Marvel_Logo.png" alt="Marvel Logo" />
         </a>
       </ImageContainer>
 

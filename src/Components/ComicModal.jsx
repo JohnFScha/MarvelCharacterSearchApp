@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ComicModalContainer, ComicCover, StyledImg, ModalName, ModalDescription } from '../styles/componentStyles'
+import {
+  ComicModalContainer,
+  ComicCover,
+  StyledImg,
+  ModalName,
+  ModalDescription,
+} from "../styles/componentStyles";
 
 const ComicModal = ({ id, thumbnail, title, description }) => {
-
   if (
     !description ||
     description === "" ||
@@ -14,16 +19,16 @@ const ComicModal = ({ id, thumbnail, title, description }) => {
 
   return (
     <ComicModalContainer>
+      <Link to={`/comics/${id}`}>
+        <StyledImg
+          src={`${thumbnail.path}.${thumbnail.extension}`}
+          alt="title"
+        />
+      </Link>
       <ComicCover>
-        <Link to={`/comics/${id}`}>
-          <StyledImg
-            src={`${thumbnail.path}.${thumbnail.extension}`}
-            alt="title"
-          />  
-        </Link>
         <ModalName>{title}</ModalName>
+        <ModalDescription>{description}</ModalDescription>
       </ComicCover>
-      <ModalDescription>{description}</ModalDescription>
     </ComicModalContainer>
   );
 };

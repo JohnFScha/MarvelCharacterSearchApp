@@ -250,28 +250,34 @@ export const CharacterImg = styled.img`
 
 export const ComicModalContainer = styled.div`
   margin: auto;
-  ${flexCenterStyles}
+  display: flex;
+  justify-content: space-between;
   width: 83.3333%;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
+  height: 15rem;
+  gap: 1.5rem;
 `;
 
 export const ComicCover = styled.div`
   display: flex;
   flex-direction: column;
+  height: 5rem;
+  
 `;
 
 export const StyledImg = styled.img`
-  max-width: 12rem;
+  max-width: 6.5rem;
 `;
 
 export const ModalName = styled.small`
   text-align: center;
+  font-size: 1.5rem;
 `;
 
 export const ModalDescription = styled.p`
   text-align: justify;
   font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 /* Comic Detail */
