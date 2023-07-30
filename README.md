@@ -11,7 +11,7 @@ Welcome to the documentation page for the Marvel Character Search app. This page
 5.  [How to Install Dependencies](##How-to-Install-Dependencies)
 6.  [App Contents](##App-contents)
 
-## Local Installation
+## Local-Installation
 
 To install the app locally, follow these steps:
 
@@ -27,7 +27,7 @@ To install the app locally, follow these steps:
 
 `npm install` 
 
-## Local Implementation
+## Local-Implementation
 
 After installing the app locally, you can run it on your development server using the following command:
 
@@ -35,7 +35,7 @@ After installing the app locally, you can run it on your development server usin
 
 The app should now be running on `http://localhost:3000` in your web browser. You can access it by opening the provided URL.
 
-## Remote Implementation
+## Remote-Implementation
 
 To implement the app remotely, you will need to deploy it to a web server or hosting service. One popular option is to use Vercel or Netlify for easy deployment.
 
@@ -77,7 +77,7 @@ Additionally, the app has devDependencies for development purposes:
 -   "tailwindcss": ^3.3.3
 -   "vite": ^4.4.0
 
-## How to Install Dependencies
+## How-to-Install-Dependencies
 
 As mentioned earlier, the Node.js dependencies can be installed by running the following command within the app's directory:
 
@@ -87,7 +87,7 @@ This will install all the required dependencies listed in the `package.json` fil
 
 Congratulations! You now have the Marvel Character Search app installed and ready to be implemented either locally or remotely. Have fun exploring Marvel's characters and comics!
 
-## App contents
+## App-contents
 
 The app consist of three main parts:
 
@@ -120,3 +120,9 @@ If instead a link was provided, it'll return a preview detail page for that comi
 ![favs](https://github.com/JohnFScha/MarvelCharacterSearchApp/assets/115885102/c421a090-4a6c-4209-a0be-9a6d258026fc)
 
 If a character has been added to favorites, it will be shown in this section. Clicking on the star icon will now remove that character from favs.
+
+## Thanks
+
+I want to finish this by thanking the staff at [Leniolabs_](https://www.leniolabs.com/) for hosting thw 2023 edition of their Frontend Bootcamp. It has been a privilage to work with talented and experienced programmers from around the world. This simple yet complex app is the result of the effort poured into this 3 months of work.
+
+Thanks Javier and Gerardo! 
