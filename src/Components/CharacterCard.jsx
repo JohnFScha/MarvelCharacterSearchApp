@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarFill } from '@heroicons/react/24/solid';
 import { useMarvelContext } from "../context/MarvelContext";
@@ -6,7 +6,7 @@ import { CharacterContainer, StyledButton, CharacterImg } from "../styles/compon
 import { searchComicByCharacterIdAPI } from "../api/marvelApi";
 
 const CharacterCard = ({ id, title, thumbnail }) => {
-  const { favorites, addToFavorites ,results, setModalData } = useMarvelContext();
+  const { favorites, addToFavorites, results, setModalData } = useMarvelContext();
 
   const isImageNotAvailable = thumbnail && thumbnail.path.includes("image_not_available");
 
