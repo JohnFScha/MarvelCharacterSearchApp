@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getCharactersAPI,
-  searchByIdAPI,
+  searchComicByIdAPI,
   searchByNameAPI
 } from "../api/marvelApi";
 import { useMarvelContext } from "../context/MarvelContext";
@@ -23,7 +23,7 @@ const useMarvelSearch = () => {
     if (inputValue.startsWith(marvelUrl)) {
       const slicedUrl = inputValue.replace("https://", "").split('/');
       const id = slicedUrl[3];
-      result = await searchByIdAPI(id);
+      result = await searchComicByIdAPI(id);
       navigate(`comics/${id}`)
     } else {
       result = await searchByNameAPI(inputValue);  
