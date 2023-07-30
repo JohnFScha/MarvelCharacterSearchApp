@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from './components/Header';
-import CharacterList from "./components/CharacterList";
-import ComicDetail from "./components/ComicDetail";
-import Favorites from "./components/Favorites";
-import Footer from "./components/Footer";
+import Header from './components/Header.jsx';
+import CharacterList from "./components/CharacterList.jsx";
+import ComicDetail from "./components/ComicDetail.jsx";
+import Favorites from "./components/Favorites.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   
