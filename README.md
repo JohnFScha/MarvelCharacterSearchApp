@@ -124,6 +124,6 @@ If a character has been added to favorites, it will be shown in this section. Cl
 
 ## [Thanks](#thanks)
 
-I want to finish this by thanking the staff at [Leniolabs_](https://www.leniolabs.com/) for hosting thw 2023 edition of their Frontend Bootcamp. It has been a privilage to work with talented and experienced programmers from around the world. This simple yet complex app is the result of the effort poured into this 3 months of work.
+I want to finish this by thanking the staff at [Leniolabs_](https://www.leniolabs.com/) for hosting the 2023 edition of their Frontend Bootcamp. It has been a privilage to work with talented and experienced programmers from around the world. This simple yet complex app is the result of the effort poured into this 3 months of work, and my first medium to large scale project to be implemented with React.
 
 Thanks Javier and Gerardo! 
