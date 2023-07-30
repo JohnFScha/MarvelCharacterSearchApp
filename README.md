@@ -4,12 +4,12 @@ Welcome to the documentation page for the Marvel Character Search app. This page
 
 ## Table of Contents
 
-1.  [Local Installation](##Local Installation)
-2.  [Local Implementation](## Local Implementation)
-3.  [Remote Implementation](## Remote Implementation)
-4.  [Dependencies](## Dependencies)
-5.  [How to Install Dependencies](## How to Install Dependencies)
-6.  [App Contents](## App contents)
+1.  [Local Installation](##Local-Installation)
+2.  [Local Implementation](##Local-Implementation)
+3.  [Remote Implementation](##Remote-Implementation)
+4.  [Dependencies](##Dependencies)
+5.  [How to Install Dependencies](##How-to-Install-Dependencies)
+6.  [App Contents](##App-contents)
 
 ## Local Installation
 
@@ -95,7 +95,7 @@ The app consist of three main parts:
 
 ![searchbar](https://github.com/JohnFScha/MarvelCharacterSearchApp/assets/115885102/4ee829fc-baa5-438a-b84c-da4ffa6e6327)
 
-The input takes a character's name or either a link to a marvel comic (i.e. : [Comic](https://www.marvel.com/comics/issue/107556/star_wars_the_mandalorian_season_2_2023_2). The Marvel Logo links directly to Marvel's home page. The star icon on the rightmost corner links to the Favorites section, and it will reflect the state of the storage dinamically: if it's outlined, the fav section is empty. If it's solid, it means at least one character has been stored in the fav section.
+The input takes a character's name or either a link to a marvel comic (i.e. : [The Mandalorian](https://www.marvel.com/comics/issue/107556/star_wars_the_mandalorian_season_2_2023_2)). The Marvel Logo links directly to Marvel's home page. The star icon on the rightmost corner links to the Favorites section, and it will reflect the state of the storage dinamically: if it's outlined, the fav section is empty. If it's solid, it means at least one character has been stored in the fav section.
 
 ### Character List
 
