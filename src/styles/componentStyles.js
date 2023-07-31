@@ -261,8 +261,10 @@ export const ComicModalContainer = styled.div`
 export const ComicCover = styled.div`
   display: flex;
   flex-direction: column;
-  height: 5rem;
-  
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  overflow: hidden;
 `;
 
 export const StyledImg = styled.img`
@@ -277,8 +279,9 @@ export const ModalName = styled.small`
 export const ModalDescription = styled.p`
   text-align: justify;
   font-size: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 5rem;
+  white-space: wrap;
+  text-overflow: ellipsis;  
 `;
 
 /* Comic Detail */
@@ -320,10 +323,12 @@ export const ComicDetailCover = styled.img`
 export const GlobalStyle = createGlobalStyle`
   @media (max-width: 326px) {
     ${MainContainer},
-    ${ComicMain} {
+    ${ComicMain},
+    ${FavoriteSection} {
       grid-template-columns: repeat(1, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(1, minmax(0, 1fr));
       align-items: center;
+      justify-content: start;
     }
 
     ${CardContainer},
@@ -331,6 +336,25 @@ export const GlobalStyle = createGlobalStyle`
     ${ComicModalContainer},
     ${ComicData} {
       flex-direction: column;
+      align-items: center
+    }
+
+    ${ComicModalContainer} {
+      height: 20rem;
+
+      &${StyledImg} {
+        max-width: 10rem;
+      }
+
+      & ${ComicCover} {
+        overflow: auto;
+        height: 20rem;
+        padding: 2px;
+
+        & ${ModalDescription} {
+          height: 100%;
+        }
+      }
     }
 
     ${ImageContainer} {
@@ -347,8 +371,11 @@ export const GlobalStyle = createGlobalStyle`
     ${SearchInput} {
       width: 100%;
       border: 1px solid gray;
-      margin-right: 5px;
-      padding: 0;
+      padding: 5px;
+    }
+
+    ${StyledLink} {
+      border: none;
     }
 
     ${StyledHeader} {
@@ -357,6 +384,8 @@ export const GlobalStyle = createGlobalStyle`
       justify-content: center;
       align-items: center;
       width: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     ${ComicDetailCover} {
